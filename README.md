@@ -1,4 +1,4 @@
-# PRA2003_AA_Monitoring-bacterial-movement-and-populations
+# PRA2003_Monitoring bacterial movement and populations
 Aleyna Alicioglu - i6381736
 
 ## Answer the following questions with the given dataset 
