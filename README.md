@@ -14,6 +14,10 @@ Answer the following questions with the given dataset:
 * There are 10 data files in total, each containing 500,000 events
 * All of the files are named output-Set#.txt
 * Each file contains data on 12 bacterial strains, identified by a bacterial ID
+    * The mutant strain for each bacteria is labelled with a negative ID number
+* Each event starts with a header line
+    * First value represents the experiment number
+    * Second value is the number of bacteria in that experiment 
 
 
 
@@ -36,15 +40,26 @@ Answer the following questions with the given dataset:
 ## Week 3: Code Installation
 This code will read one file with 500K events and will select the bacterial strains of interest based on its code and give the average bacteria per event together with its statistical uncertainty. 
 
-
 ### Getting Started
-Dependences:
-- To run the code, the user should have the file downloaded in the same folder as the script.
-- Events that have 0 particles (e.g. "19 0") are the failed experiments and are not counted as events.
+**Dependences**
+* The file is very large, make sure that there is enough disk space available.
+* To run the code, the user should have the file downloaded in the same folder as the script.
+
+**Data Handling**
+* Events with 0 particles (e.g. "19 0") are the failed experiments and are not counted as events.
+    * They will not be counted towards the total average.
 
 ## Week 4: Data Analysis
-The main results come from the analysis of the entire sample of 5M experiments. 
+The main results come from the analysis of the entire sample of 5M events. 
 
-### Description
+**Description**
 To calculate the results of the entire sample of 5M events, the same code from week 3 was reused. Each dataset was analysed separately as an individual sub-sample, meaning that there would be 10 sub-samples in total.
+
+### Method
+
+
+
+
+### Results
+
 
