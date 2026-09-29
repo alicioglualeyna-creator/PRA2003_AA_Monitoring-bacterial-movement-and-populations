@@ -1,16 +1,21 @@
-# PRA2003_Monitoring bacterial movement and populations
-Aleyna Alicioglu - i6381736
+# PRA2003_Monitoring Bacterial Movement and Populations
 
-## Biology Themed Exercise: Answer the following questions with the given dataset 
+**Author**: Aleyna Alicioglu(i6381736)
+**Course**: Programming (PRA2003)
+**University**: Maastricht University 
+
+## Research Questions: Biology Themed 
+Answer the following questions with the given dataset:
 1. What are the average counts of each bacterial stain and their statistical uncertainties?
 2. Is there any asymmetry between the normal and the mutant strain? 
-3. Is there any asymmetry as a function of their momentum? 
+3. Is there any asymmetry as a function of their momentum?
 
-## Week 3: Code Installation
-This code will read one file with 500K events and will select the bacterial strains of interest based on its code and give the average bacteria per event together with its statistical uncertainty. 
+## Dataset Description
+* There are 10 data files in total, each containing 500,000 events
+* All of the files are named output-Set#.txt
+* Each file contains data on 12 bacterial strains, identified by a bacterial ID
 
-### Description 
-Each file contains data on 12 bacterial strains
+
 
 | Bacterial ID | Bacterial strain |
 |--------------|------------------|
@@ -26,6 +31,10 @@ Each file contains data on 12 bacterial strains
 | -3312        | Drug-resistant *Mycobacterium tuberculosis* |
 | 3334         | *Salmonella enterica* |
 | -3334        | *Salmonella* mutant |
+
+
+## Week 3: Code Installation
+This code will read one file with 500K events and will select the bacterial strains of interest based on its code and give the average bacteria per event together with its statistical uncertainty. 
 
 
 ### Getting Started
