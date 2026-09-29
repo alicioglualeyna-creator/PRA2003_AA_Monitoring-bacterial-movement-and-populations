@@ -9,7 +9,7 @@
 **University**: Maastricht University 
 
 
-## Research Questions: Biology Themed 
+## Biology Themed Research Questions:
 Answer the following questions with the given dataset:
 1. What are the average counts of each bacterial stain and their statistical uncertainties?
 2. Is there any asymmetry between the normal and the mutant strain? 
