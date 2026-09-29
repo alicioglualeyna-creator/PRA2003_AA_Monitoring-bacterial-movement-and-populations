@@ -4,8 +4,6 @@
 
 **Course**: Programming (PRA2003)
 
-**Deliverable**: Week 4
-
 **University**: Maastricht University 
 
 
@@ -42,7 +40,7 @@ Answer the following questions with the given dataset:
 | -3334        | *Salmonella* mutant |
 
 
-## Code Installation
+## Week 3: Code Installation
 This code will read one file with 500K events and will select the bacterial strains of interest based on its code and give the average bacteria per event together with its statistical uncertainty. 
 
 ### Getting Started
@@ -54,7 +52,7 @@ This code will read one file with 500K events and will select the bacterial stra
 * Events with 0 particles (e.g. "19 0") are the failed experiments and are not counted as events.
     * They will not be counted towards the total average.
 
-## Data Analysis
+## Week 4: Data Analysis
 The main results come from the analysis of the entire sample of 5M events. 
 
 **Description**
