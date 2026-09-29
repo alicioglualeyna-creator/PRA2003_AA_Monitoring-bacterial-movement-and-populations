@@ -59,15 +59,13 @@ The main results come from the analysis of the entire sample of 5M events.
 To calculate the results of the entire sample of 5M events, the same code from week 3 was reused. Each dataset was analysed separately as an individual sub-sample, meaning that there would be 10 sub-samples in total.
 
 ### Method
-1. The week 4 slides from the course specifies sub-sampling
-      a. Split the sample into sub-samples
-      b. Calculate the result for each sub-sample
-      c. The spread of the results are used to determine the statistical uncertainty
-2. Average number per event
-      a. The final value is the mean over the 10 sub-samples
-4. Uncertainties
-5. Asymmetry between WT and mutant
-      a. Difference = mean(WT) − mean(mutant)
+1. The week 4 slides from the course specify sub-sampling:
+    1. Split the sample into sub-samples (one per data file)
+    2. Calculate the result for each sub-sample
+    3. Use the spread of the results to determine the statistical uncertainty
+2. Average number per event is calculated for every bacterial ID in each sub-sample.
+3. The final value is the mean over the 10 sub-samples, and its uncertainty follows from their spread.
+4. WT and mutant strains are compared using the difference of their means and a z-score.
 
 
 ### Formulas
