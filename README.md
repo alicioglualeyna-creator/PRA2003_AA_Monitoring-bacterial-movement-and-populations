@@ -65,12 +65,45 @@ To calculate the results of the entire sample of 5M events, the same code from w
       c. The spread of the results are used to determine the statistical uncertainty
 2. Average number per event
       a. The final value is the mean over the 10 sub-samples
-
-$$x_k = \frac{n_k}{E_k}$$
-
 4. Uncertainties
 5. Asymmetry between WT and mutant
       a. Difference = mean(WT) − mean(mutant)
+
+
+### Formulas
+Notation: $k = 1, \dots, N$ is the sub-sample index ($N = 10$), $n_k$ is the number of bacteria of a given ID in sub-sample $k$, and $E_k$ is the number of valid events in sub-sample $k$ (events with 0 bacteria are excluded).
+
+**Mean per event in one sub-sample**
+
+$$x_k = \frac{n_k}{E_k}$$
+
+**Mean per event (final value, average over the sub-samples)**
+
+$$\bar{x} = \frac{1}{N} \sum_{k=1}^{N} x_k$$
+
+**Statistical uncertainty (spread of the sub-sample results)**
+
+$$\sigma = \sqrt{\frac{1}{N-1} \sum_{k=1}^{N} \left(x_k - \bar{x}\right)^2}$$
+
+**Uncertainty on the mean**
+
+$$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{N}}$$
+
+**Total count (all sets)**
+
+$$n_{\text{total}} = \sum_{k=1}^{N} n_k$$
+
+**Difference between WT and mutant**
+
+$$\Delta = \bar{x}_{\text{WT}} - \bar{x}_{\text{mutant}}$$
+
+**z-score (std-based, conservative)**
+
+$$z = \frac{\Delta}{\sqrt{\sigma_{\text{WT}}^2 + \sigma_{\text{mutant}}^2}}$$
+
+**Asymmetry criterion**
+
+$$|z| \geq 3 \;\Rightarrow\; \text{asymmetry}$$
 
 
 
