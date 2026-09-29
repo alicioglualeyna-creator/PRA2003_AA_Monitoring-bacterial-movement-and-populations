@@ -53,10 +53,27 @@ This code will read one file with 500K events and will select the bacterial stra
 The main results come from the analysis of the entire sample of 5M events. 
 
 **Description**
+
 To calculate the results of the entire sample of 5M events, the same code from week 3 was reused. Each dataset was analysed separately as an individual sub-sample, meaning that there would be 10 sub-samples in total.
 
 ### Method
+1. The week 4 slides from the course specifies sub-sampling
+      a. Split the sample into sub-samples
+      b. Calculate the result for each sub-sample
+      c. The spread of the results are used to determine the statistical uncertainty
+2. Average number per event
 
+xˉ=N1​i=1∑N​xi
+​
+4. Sub-sampling statistical uncertainty
+
+[ \boxed{\sigma_x =\sqrt{\frac{1}{N-1}\sum_{i=1}^{N}(x_i-\bar{x})^2}}{=tex} ]
+
+5. Mean uncertainty
+
+σxˉ​=N​σx​​
+
+6. 
 
 
 
