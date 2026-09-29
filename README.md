@@ -64,8 +64,13 @@ To calculate the results of the entire sample of 5M events, the same code from w
       b. Calculate the result for each sub-sample
       c. The spread of the results are used to determine the statistical uncertainty
 2. Average number per event
+      a. The final value is the mean over the 10 sub-samples
 
+$$x_k = \frac{n_k}{E_k}$$
 
+4. Uncertainties
+5. Asymmetry between WT and mutant
+      a. Difference = mean(WT) − mean(mutant)
 
 
 
