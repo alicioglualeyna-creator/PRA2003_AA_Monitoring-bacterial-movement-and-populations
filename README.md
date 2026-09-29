@@ -1,8 +1,11 @@
 # PRA2003_Monitoring Bacterial Movement and Populations
 
 **Author**: Aleyna Alicioglu(i6381736)
+
 **Course**: Programming (PRA2003)
+
 **Deliverable**: Week 4
+
 **University**: Maastricht University 
 
 
