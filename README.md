@@ -18,8 +18,7 @@ Answer the following questions with the given dataset:
 3. Is there any asymmetry as a function of their momentum?
 
 ## Dataset Description
-* There are 10 data files in total, each containing around 500K events
-      * These 10 files were treated as subsamples
+* There are 10 data files in total, each containing around 500K events and these files were treated as subsamples
 * All of the files are named output-Set#.txt
 * Each file contains data on 12 bacterial strains, identified by a bacterial ID
 * Each event starts with a header line
