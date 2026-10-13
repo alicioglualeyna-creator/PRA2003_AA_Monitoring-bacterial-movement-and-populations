@@ -139,7 +139,7 @@ $$|z| \geq 3 \;\Rightarrow\; \text{asymmetry}$$
 
 > *Feedback:* "Why do you propagate the uncertainties on your z-score as if the two measurements are fully uncorrelated?"
 
-The WT and mutant counts are **not independent**: in every sub-sample they are counted in the *same* events. When a sub-sample happens to contain more bacteria overall, both the WT and the mutant counts go up together. The two measurements are therefore positively correlated, and the correct propagation of the uncertainty on the difference is
+The WT and mutant counts are not independent: in every sub-sample they are counted in the *same* events. When a sub-sample happens to contain more bacteria overall, both the WT and the mutant counts go up together. The two measurements are therefore positively correlated, and the correct propagation of the uncertainty on the difference is
 
 $$\sigma_{\Delta}^2 = \sigma_{\text{WT}}^2 + \sigma_{\text{mutant}}^2 - 2\,\text{cov}(x_{\text{WT}}, x_{\text{mutant}})$$
 
@@ -172,17 +172,18 @@ Because $A_k$ is built from WT and mutant counts of the *same* sub-sample, any f
 | Step | File | Language | What it does |
 |------|------|----------|--------------|
 | 1 | `1_Deliverable6momentum.r` | R | Reads all 10 `output-Set#.txt` files in chunks of 2 million lines, keeps the bacteria with the IDs of interest, calculates $P = \sqrt{p_x^2 + p_y^2 + p_z^2}$ and writes one `momenta-Set#.csv` per sub-sample (columns `ID`, `p`). |
-| 2 | `2_Deliverable6finalmomentum.py` | Python | For one WT/mutant pair (`pid1` at the top of the file): bins the momenta, computes the asymmetry and $dN/dP$ per bin per sub-sample, averages over the 10 sub-samples, saves `asymmetry-<ID>.csv`, `asymmetry-<ID>.png` and `spectrum-<ID>.png`. |
+| 2 | `2_Deliverable6finalmomentum.py` | Python | Python was used for data visualization. For one ID pair (`pid1` at the top of the file): bins the momenta, computes the asymmetry and $dN/dP$ per bin per sub-sample, averages over the 10 sub-samples, saves `asymmetry-<ID>.csv`, `asymmetry-<ID>.png` and `spectrum-<ID>.png`. |
 
 **How to run**
-1. Put both scripts in the same folder as `output-Set1.txt` … `output-Set10.txt`.
+1. Before running the code, make sure that both scripts `1_Deliverable6momentum.r` and `2_Deliverable6finalmomentum.py` are in the same folder as `output-Set1.txt` … `output-Set10.txt`.
 2. Set `idsOfInterest` in the R script to the pairs you want, run it: `Rscript 1_Deliverable6momentum.r`.
 3. Set `pid1` and `bins` (table below) in the Python script, run it: `python 2_Deliverable6finalmomentum.py`. Requires `numpy`, `pandas`, `matplotlib`.
+4. Set 'use_sem = False' 
 
-**Momentum bins** (unit: $10^{-20}$ kg m/s) 
+**Momentum bins** (unit: $10^{-20}$ kg m/s): 
 The narrower bins have more bacteria, whereas the wider bins have fewer bacteria, for example, with the ID 3334/-3334. This ensures that every bin has enough statistics. It is also important to note that the first bins start with the value 0, so not bacteria are left out.
 
-| Pair | Bins |
+| Pair | Bins edges |
 |------|-----------|
 | 211 / -211   | 0, 0.25, 0.5, 0.75, 1, 1.5, 2, 3, 4, 6, 8, 12, 16, 24, 32 |
 | 321 / -321   | 0, 0.5, 1, 1.5, 2, 2.5, 3, 4, 6, 8, 12, 16, 24, 40 |
@@ -271,6 +272,12 @@ All spectra rise to a maximum at $P \approx 1$–2 and then fall steeply (log sc
 </details>
 
 
+### Limitations
+* For *M. tuberculosis* and *Salmonella* the data cannot exclude an asymmetry of the same size as in the other strains because they few bacteria to measure it.
+* Varied bin lengths because bins have different statistical weights
+* Set 10 complications because its a smaller set and can be removed for future research
+
+  
 ## Conclusion
 
 ** Do we see any bacteria asymmetry?: Yes, for three of the six pairs.**
@@ -285,9 +292,7 @@ All spectra rise to a maximum at $P \approx 1$–2 and then fall steeply (log sc
 | *Salmonella* | 0.0152 ± 0.0293, z = 0.5 | none visible | no asymmetry |
 
 * In all three significant cases the asymmetry is **positive**: there are more WT than mutant bacteria (the antibiotic-resistant *P. aeruginosa* and the capsule-deficient *S. pneumoniae* are less abundant than their WT).
-* For *E. coli* and *S. pneumoniae* the asymmetry is **larger at high momentum**, so the WT excess is concentrated in the faster-moving bacteria.
-* Taking the correlation between WT and mutant into account (feedback on the z-score) changes the conclusion for *E. coli* (from no asymmetry to asymmetry) and makes *S. pneumoniae* clearly significant instead of borderline.
-* For *M. tuberculosis* and *Salmonella* the data cannot exclude an asymmetry of the same size as in the other strains; they simply have too few bacteria to measure it.
+
 
 
 
