@@ -91,7 +91,9 @@ Significance:
 
 $$z = \frac{A}{\sigma_A}$$
 
-Asymmetry criterion: if $|z| \geq 3$ = asymmetry, if $|z| < 3$ = no asymmetry.
+Asymmetry criterion: 
+$|z| \geq 3$ = asymmetry
+$|z| < 3$ = no asymmetry
 
 
 ### Results
