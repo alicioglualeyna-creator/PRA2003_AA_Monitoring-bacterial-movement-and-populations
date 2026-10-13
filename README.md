@@ -220,8 +220,13 @@ Key:
 
 <img width="699" height="430" alt="Screenshot 2026-10-13 at 19 00 34" src="https://github.com/user-attachments/assets/c1651e6e-8bc9-4c4b-8542-a20f573c7c52" />
 
-* Every point is above 0, so there are more WT than antibiotic-resistant bacteria **at every momentum**.
-* The asymmetry goes up with momentum: about 0.008 below P = 3 and about 0.015 above P = 16. So the difference is biggest for the fastest-moving bacteria.
+* Every point is above 0
+* Peak dN/dP = 0.22
+* Decreases to 0.013 at P = 12 - 16
+* The WT and mutants overlap because a 1% difference is not observable
+* The large error bars between 2.5-4 suggest that one subsample has a different momentum distribution
+* Overall represented by the pink band is 0.0100 ± 0.0010
+* The gray area represents the overflow bin (P>16)
 
 
 #### *Streptococcus pneumoniae* (3122 / -3122)
@@ -238,11 +243,17 @@ Key:
 
 <img width="637" height="400" alt="Screenshot 2026-10-13 at 19 01 23" src="https://github.com/user-attachments/assets/17f8cd2d-cd11-4e87-a266-1c05158ad690" />
 
+* Peak dN/dP = 0.0055
+* Peak position: P ≈ 1 to 2
+* The WT and mutants overlap due to insignificant differences
+* 30 times fewer bacteria than 2212
+* Overall: 0.0056 ± 0.0062 (pink band)
 * All bins are compatible with zero and with each other
+     * 10 out of the 11 bins are above zero
 * Error bars (≈ ±0.015–0.025) are large because this strain is rare
      * Error bars are about 5 times bigger than for *P. aeruginosa*, because there are about 30 times fewer bacteria, so I can't claim an asymmetry
 * No momentum dependence observed
-* Most points are slightly above 0, but every error bar crosses the red line and the pink band touches 0 as well
+* The pink band overlaps with the red line, meaning that it is not asymmetric 
 
 
 #### *Salmonella enterica* (3334 / -3334)
@@ -274,6 +285,6 @@ Key:
 
 #### Answering the research questions:
 * Is there any asymmetry between the normal and the mutant strain? Three of the pairs indicate asymmetry, suggesting that there are more WT than mutant bacteria 
-* Is there any asymmetry as a function of their momentum? For E. coli, P. aeruginosa, and S. pneumoniae the asymmetry gets bigger at higher momentum, so the WT excess is largest among the fastest-moving bacteria. For P. aeruginosa this could mean the antibiotic-resistance mutation affects how well the bacteria move.
+* Is there any asymmetry as a function of their momentum? For E. coli, P. aeruginosa, and S. pneumoniae the asymmetry gets larger at a higher momentum, so the WT excess is largest among the fastest-moving bacteria. 
 
 
