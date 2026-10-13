@@ -83,15 +83,15 @@ Standard deviation of the 10 sub-samples:
 
 $$\sigma = \sqrt{\frac{\sum (x_i - \bar{x})^2}{N-1}}, \qquad N = 10$$
 
-Asymmetry (positive means more WT, negative means more mutant, 0 means equal):
+Asymmetry:
 
 $$A = \frac{N_{WT} - N_{mut}}{N_{WT} + N_{mut}}$$
 
-Significance (how many standard deviations the asymmetry is away from 0):
+Significance:
 
 $$z = \frac{A}{\sigma_A}$$
 
-
+Asymmetry criterion: if $|z| \geq 3$ = asymmetry, if $|z| < 3$ = no asymmetry.
 
 
 ### Results
@@ -166,14 +166,14 @@ $$\sigma_{\Delta}^2 = \sigma_{WT}^2 + \sigma_{mut}^2 - 2\,\text{cov}(WT, mut)$$
 ### Code
 | Step | File | Language | What it does |
 |------|------|----------|--------------|
-| 1 | `1_Deliverable6momentum.r` | R | Reads all 10 `output-Set#.txt` files in chunks of 2 million lines, keeps the bacteria with the IDs of interest, calculates $P = \sqrt{p_x^2 + p_y^2 + p_z^2}$ and writes one `momenta-Set#.csv` per sub-sample (columns `ID`, `p`). |
+| 1 | `1_Deliverable6momentum.r` | R | The first code reads all 10 `output-Set#.txt` files in chunks of 2 million lines. It keeps the bacteria with the IDs of interest, calculates $P = \sqrt{p_x^2 + p_y^2 + p_z^2}$ and writes one `momenta-Set#.csv` per sub-sample (columns `ID`, `p`). |
 | 2 | `2_Deliverable6finalmomentum.py` | Python | Python was used for data visualization. For one ID pair (`pid1` at the top of the file): bins the momenta, computes the asymmetry and $dN/dP$ per bin per sub-sample, averages over the 10 sub-samples, saves `asymmetry-<ID>.csv`, `asymmetry-<ID>.png` and `spectrum-<ID>.png`. |
 
-**Step 1 – momentum.** For every bacterium:
+**Step 1** For every bacterium:
 
 $$P = \sqrt{p_x^2 + p_y^2 + p_z^2} \qquad \text{(unit: } 10^{-20}\text{ kg m/s)}$$
 
-**Step 2 – bins.** I split the momentum into ranges (bins). The narrow bins mean that there are lots of bacteria (low momentum), and where there are few bacteria (high momentum) they are wider. The same bins were used for all 10 sub-samples.
+**Step 2** Bins are momentum ranges. The narrow bins mean that there are lots of bacteria (low momentum), and where there are few bacteria (high momentum) they are wider. The same bins were used for all 10 sub-samples.
 
 | Pair | Bin edges |
 |------|-----------|
@@ -182,7 +182,7 @@ $$P = \sqrt{p_x^2 + p_y^2 + p_z^2} \qquad \text{(unit: } 10^{-20}\text{ kg m/s)}
 | 2212, 3122, 3312 | 0, 1, 1.5, 2, 2.5, 3, 4, 6, 8, 12, 16 |
 | 3334 | 0, 1, 2, 3, 4.5, 7, 10, 15, 21 |
 
-**Step 3 – per bin.** In every bin of every sub-sample I count WT and mutants and calculate $A$. Then I average over the 10 sub-samples, and the standard deviation is the error bar.
+**Step 3** For every bin the WT and mutants are counted and then their $A$ is calculated. Then I average over the 10 sub-samples, and the standard deviation is the error bar.
 
 
 ### Plots
@@ -256,11 +256,10 @@ Key:
 * For *M. tuberculosis* and *Salmonella* the data cannot exclude an asymmetry of the same size as in the other strains because they few bacteria to measure it.
 * Varied bin lengths because bins have different statistical weights
 * Set 10 complications because its a smaller set and can be removed for future research
+* It is also important to consider that some values from the earlier deliverables were rounded before being reused 
 
   
 ## Conclusion
-
-**Do we see any bacteria asymmetry?: Yes, for three of the six pairs.**
 
 | Pair | Overall asymmetry | Momentum dependence | Verdict |
 |------|-------------------|---------------------|---------|
@@ -271,8 +270,8 @@ Key:
 | *M. tuberculosis* | 0.0056 ± 0.0062, z = 0.9 | none visible | no asymmetry |
 | *Salmonella* | 0.0152 ± 0.0293, z = 0.5 | none visible | no asymmetry |
 
-* In all three significant cases the asymmetry is **positive**: there are more WT than mutant bacteria (the antibiotic-resistant *P. aeruginosa* and the capsule-deficient *S. pneumoniae* are less abundant than their WT).
-
-
+#### Answering the research questions:
+* Is there any asymmetry between the normal and the mutant strain? Three of the pairs indicate asymmetry, suggesting that there are more WT than mutant bacteria 
+* Is there any asymmetry as a function of their momentum? For E. coli, P. aeruginosa, and S. pneumoniae the asymmetry gets bigger at higher momentum, so the WT excess is largest among the fastest-moving bacteria. For P. aeruginosa this could mean the antibiotic-resistance mutation affects how well the bacteria move.
 
 
