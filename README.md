@@ -127,35 +127,22 @@ I call it an asymmetry if $|z| \geq 3$.
 | 3334 vs -3334 | *Salmonella enterica* (WT vs mutant)                  | 0.00004                  | 0.54                   | no                     |
 
 
-### Correction of the z-score (feedback: correlated measurements)
+### Correction of the z-score (feedback)
 
 > *Feedback:* "Why do you propagate the uncertainties on your z-score as if the two measurements are fully uncorrelated?"
 
-The WT and mutant counts are not independent: in every sub-sample they are counted in the *same* events. When a sub-sample happens to contain more bacteria overall, both the WT and the mutant counts go up together. The two measurements are therefore positively correlated, and the correct propagation of the uncertainty on the difference is
+In my first version I compared WT and mutant like this:
 
-$$\sigma_{\Delta}^2 = \sigma_{\text{WT}}^2 + \sigma_{\text{mutant}}^2 - 2\,\text{cov}(x_{\text{WT}}, x_{\text{mutant}})$$
+$$z = \frac{\bar{x}_{WT} - \bar{x}_{mut}}{\sqrt{\sigma_{WT}^2 + \sigma_{mut}^2}}$$
 
-Leaving out the covariance term (as in Table 2) **overestimates** the uncertainty and makes the z-score too small.
+This formula assumes WT and mutant are **independent**. They are not: they are counted in the **same events**. If one data file has more bacteria overall, it has more WT *and* more mutants. So the WT and mutant numbers go up and down together.
 
-Instead of estimating the covariance separately, the correlation is taken into account automatically by computing the comparison **inside each sub-sample first** and only then looking at the spread. For this the asymmetry is used:
+When you take the difference, that shared up-and-down cancels out, so the real uncertainty on the difference is **smaller** than my old formula said. The full formula has an extra covariance term:
 
-**Asymmetry in one sub-sample**
+$$\sigma_{\Delta}^2 = \sigma_{WT}^2 + \sigma_{mut}^2 - 2\,\text{cov}(WT, mut)$$
 
-$$A_k = \frac{n_{\text{WT},k} - n_{\text{mut},k}}{n_{\text{WT},k} + n_{\text{mut},k}}$$
+**What I changed:** instead of calculating the WT and mutant uncertainty separately and adding them, I now calculate the difference and the asymmetry **inside each sub-sample first**, and then take the standard deviation of those 10 values. That way the correlation is automatically included.
 
-**Mean asymmetry** (weighted by the number of bacteria $w_k = n_{\text{WT},k} + n_{\text{mut},k}$ in each sub-sample)
-
-$$\bar{A} = \frac{\sum_k w_k A_k}{\sum_k w_k}$$
-
-**Statistical uncertainty** (weighted spread of the 10 $A_k$ values)
-
-$$\sigma_A = \sqrt{\frac{N}{N-1}\,\frac{\sum_k w_k (A_k - \bar{A})^2}{\sum_k w_k}}$$
-
-**Corrected z-score**
-
-$$z = \frac{\bar{A}}{\sigma_A}$$
-
-Because $A_k$ is built from WT and mutant counts of the *same* sub-sample, any fluctuation that both share cancels in $A_k$, so $\sigma_A$ contains the covariance term. As in Week 4, the std (not the SEM) is used, which is the conservative choice.
 
 
 ## Week 6: Asymmetry as a Function of Momentum
@@ -166,15 +153,29 @@ Because $A_k$ is built from WT and mutant counts of the *same* sub-sample, any f
 | 1 | `1_Deliverable6momentum.r` | R | Reads all 10 `output-Set#.txt` files in chunks of 2 million lines, keeps the bacteria with the IDs of interest, calculates $P = \sqrt{p_x^2 + p_y^2 + p_z^2}$ and writes one `momenta-Set#.csv` per sub-sample (columns `ID`, `p`). |
 | 2 | `2_Deliverable6finalmomentum.py` | Python | Python was used for data visualization. For one ID pair (`pid1` at the top of the file): bins the momenta, computes the asymmetry and $dN/dP$ per bin per sub-sample, averages over the 10 sub-samples, saves `asymmetry-<ID>.csv`, `asymmetry-<ID>.png` and `spectrum-<ID>.png`. |
 
-**How to run**
-1. Before running the code, make sure that both scripts `1_Deliverable6momentum.r` and `2_Deliverable6finalmomentum.py` are in the same folder as `output-Set1.txt` … `output-Set10.txt`.
-2. Set `idsOfInterest` in the R script to the pairs you want, run it: `Rscript 1_Deliverable6momentum.r`.
-3. Set `pid1` and `bins` (table below) in the Python script, run it: `python 2_Deliverable6finalmomentum.py`. Requires `numpy`, `pandas`, `matplotlib`.
-4. Set 'use_sem = False' 
+**Step 1 – momentum.** For every bacterium:
 
-**Momentum bins** (unit: $10^{-20}$ kg m/s): 
-The narrower bins have more bacteria, whereas the wider bins have fewer bacteria, for example, with the ID 3334/-3334. This ensures that every bin has enough statistics. It is also important to note that the first bins start with the value 0, so not bacteria are left out.
+$$P = \sqrt{p_x^2 + p_y^2 + p_z^2} \qquad \text{(unit: } 10^{-20}\text{ kg m/s)}$$
 
+**Step 2 – bins.** I split the momentum into ranges (bins). Where there are lots of bacteria (low momentum) the bins are narrow, and where there are few (high momentum) they are wider, so every bin has enough bacteria. The first bin starts at 0 so nobody is left out, and everything above the last edge goes into one extra bin (the grey area in the plots). I used the same bins for all 10 sub-samples.
+
+| Pair | Bin edges |
+|------|-----------|
+| 211 | 0, 0.25, 0.5, 0.75, 1, 1.5, 2, 3, 4, 6, 8, 12, 16, 24, 32 |
+| 321 | 0, 0.5, 1, 1.5, 2, 2.5, 3, 4, 6, 8, 12, 16, 24, 40 |
+| 2212, 3122, 3312 | 0, 1, 1.5, 2, 2.5, 3, 4, 6, 8, 12, 16 |
+| 3334 | 0, 1, 2, 3, 4.5, 7, 10, 15, 21 |
+
+**Step 3 – per bin.** In every bin of every sub-sample I count WT and mutants and calculate $A$. Then I average over the 10 sub-samples, and the standard deviation is the error bar.
+
+**How to read the plots:**
+* green dot = average asymmetry in that momentum bin
+* vertical bar = uncertainty (std), horizontal bar = width of the bin
+* pink band = overall asymmetry of the pair (all momenta together)
+* red dashed line = no asymmetry (equal WT and mutant)
+* grey area = the extra bin with all the highest momenta
+
+  
 | Pair | Bins edges |
 |------|-----------|
 | 211 / -211   | 0, 0.25, 0.5, 0.75, 1, 1.5, 2, 3, 4, 6, 8, 12, 16, 24, 32 |
@@ -184,19 +185,6 @@ The narrower bins have more bacteria, whereas the wider bins have fewer bacteria
 | 3312 / -3312 | 0, 1, 1.5, 2, 2.5, 3, 4, 6, 8, 12, 16 |
 | 3334 / -3334 | 0, 1, 2, 3, 4.5, 7, 10, 15, 21 |
 
-### Formulas (per momentum bin $b$)
-
-**Asymmetry in bin $b$ of sub-sample $k$**
-
-$$A_{k,b} = \frac{n_{\text{WT},k,b} - n_{\text{mut},k,b}}{n_{\text{WT},k,b} + n_{\text{mut},k,b}}$$
-
-The mean $\bar{A}_b$ and its uncertainty $\sigma_{A,b}$ follow from the same weighted mean and weighted std as in Table 3 (weights = bacteria in that bin of that sub-sample, so a sub-sample with very few bacteria in a bin counts less). Because the asymmetry is computed within each sub-sample, the WT–mutant correlation is included here as well.
-
-**Momentum spectrum (bacteria per event per unit momentum)**
-
-$$\left(\frac{dN}{dP}\right)_{k,b} = \frac{n_{k,b}}{\Delta P_b \cdot E_k}$$
-
-with $\Delta P_b$ the bin width and $E_k = 500{,}000$ events per sub-sample.
 
 ### Plots
 
@@ -207,23 +195,22 @@ In every asymmetry plot: green points = mean asymmetry of the 10 sub-samples in 
 
 <img width="628" height="392" alt="Screenshot 2026-10-13 at 20 16 55" src="https://github.com/user-attachments/assets/fa7ee533-e43d-4d47-8cd5-afe2947cf1fd" />
 
-The asymmetry **grows with momentum**: it is compatible with zero below $P \approx 1$, around 0.001 at intermediate momenta and reaches ≈ 0.006 above $P = 32$, with small error bars. The overall value $\bar{A} = 0.0008$ is therefore an average over a momentum-dependent effect. (Error bars in this plot are the SEM.)
+Almost 0 at the lowest momenta, then it slowly increases, up to about 0.006 above P = 32. The error bars are tiny because *E. coli* is by far the most common strain. *(Note: this plot shows the SEM instead of the std.)*
 
 #### *Bacillus subtilis* (321 / -321)
 <img width="508" height="323" alt="Screenshot 2026-10-13 at 18 48 22" src="https://github.com/user-attachments/assets/d21f1852-2730-40fa-bfe3-3e59e2ba151f" />
 
 <img width="505" height="330" alt="Screenshot 2026-10-13 at 18 48 42" src="https://github.com/user-attachments/assets/5ee2a66a-77b4-47f4-8554-47f800e2fea8" />
 
-
-Below $P \approx 12$ all bins are compatible with zero. There is a hint of an increase at high momentum (last bin ≈ 0.019 ± 0.008, ≈ 2.4σ), but no single bin reaches 3σ and the overall asymmetry (0.0011 ± 0.0007) is not significant.
+Close to 0 for most momenta. There is a small rise at high momentum, but it isn't above 3σ, so I don't count it as an asymmetry.
 
 #### *Pseudomonas aeruginosa* (2212 / -2212)
 <img width="658" height="404" alt="Screenshot 2026-10-13 at 18 52 49" src="https://github.com/user-attachments/assets/fe884201-8ecb-4717-9484-8ab275eeee25" />
 
 <img width="699" height="430" alt="Screenshot 2026-10-13 at 19 00 34" src="https://github.com/user-attachments/assets/c1651e6e-8bc9-4c4b-8542-a20f573c7c52" />
 
+Every point is above 0, so there are more WT than antibiotic-resistant bacteria **at every momentum**. The asymmetry also goes up with momentum: about 0.008 below P = 3 and about 0.015 above P = 16. So the difference is biggest for the fastest-moving bacteria.
 
-Every bin lies clearly above zero and inside or close to the overall band (0.0100 ± 0.0010). The asymmetry is roughly **constant** at low momentum (≈ 0.008) with a mild rise above $P \approx 8$ (≈ 0.012–0.015), so the WT excess is present at all momenta.
 
 #### *Streptococcus pneumoniae* (3122 / -3122)
 <img width="637" height="408" alt="Screenshot 2026-10-13 at 20 17 51" src="https://github.com/user-attachments/assets/7f300d94-a22e-4565-a6a1-c22821de85d5" />
@@ -231,7 +218,7 @@ Every bin lies clearly above zero and inside or close to the overall band (0.010
 <img width="624" height="430" alt="Screenshot 2026-10-13 at 20 18 12" src="https://github.com/user-attachments/assets/668ecb94-d4ec-4954-9bb3-3e07e500b127" />
 
 
-All bins are positive. A straight-line fit gives a slope of $(5.1 \pm 1.6)\times10^{-4}$ per $10^{-20}$ kg m/s (3.2σ), so the asymmetry **increases with momentum**, from ≈ 0.006 at low $P$ to ≈ 0.013 above $P = 8$.
+All points are above 0. A straight-line fit gives a positive slope of (5.1 ± 1.6) × 10⁻⁴ (3.2σ), so the asymmetry gets bigger with momentum.
 
 #### *Mycobacterium tuberculosis* (3312 / -3312)
 <img width="650" height="407" alt="Screenshot 2026-10-13 at 19 00 56" src="https://github.com/user-attachments/assets/bcc35324-7aa5-4bea-aebb-88b5b9375782" />
@@ -239,29 +226,15 @@ All bins are positive. A straight-line fit gives a slope of $(5.1 \pm 1.6)\times
 <img width="637" height="400" alt="Screenshot 2026-10-13 at 19 01 23" src="https://github.com/user-attachments/assets/17f8cd2d-cd11-4e87-a266-1c05158ad690" />
 
 
-All bins are compatible with zero and with each other; the error bars (≈ ±0.015–0.025) are large because this strain is rare. No momentum dependence can be seen.
+All bins are compatible with zero and with each other; the error bars (≈ ±0.015–0.025) are large because this strain is rare. No momentum dependence can be seen. Most points are a bit above 0, but every error bar crosses the red line and the pink band touches 0 as well. The error bars are about 5 times bigger than for *P. aeruginosa*, because there are about 30 times fewer bacteria. So I can't claim an asymmetry, and I don't see it change with momentum.
 
 #### *Salmonella enterica* (3334 / -3334)
 <img width="638" height="402" alt="Screenshot 2026-10-13 at 19 02 06" src="https://github.com/user-attachments/assets/c76c89a8-2c70-4a07-a88f-d31246afa983" />
 
 <img width="628" height="382" alt="Screenshot 2026-10-13 at 19 02 24" src="https://github.com/user-attachments/assets/39a88487-f218-4c9c-a427-ed0ce571a0e9" />
 
+The points jump around 0 with huge error bars (there are only ~1,000 bacteria per file). No asymmetry and no momentum trend.
 
-With only ≈ 1,000 bacteria per sub-sample the uncertainties are very large (≈ ±0.06–0.12 per bin). All bins scatter around zero, so there is no asymmetry and no momentum dependence.
-
-<details>
-<summary><b>Momentum spectra dN/dP (WT and mutant)</b></summary>
-
-All spectra rise to a maximum at $P \approx 1$–2 and then fall steeply (log scale). The WT and mutant spectra lie on top of each other within uncertainties, meaning the two strains have the same momentum distribution shape; the asymmetries above are small differences in the number of bacteria, not a different shape.
-
-<img src="plots/spectrum-211.png" width="600">
-<img src="plots/spectrum-321.png" width="600">
-<img src="plots/spectrum-2212.png" width="600">
-<img src="plots/spectrum-3122.png" width="600">
-<img src="plots/spectrum-3312.png" width="600">
-<img src="plots/spectrum-3334.png" width="600">
-
-</details>
 
 
 ### Limitations
