@@ -76,35 +76,23 @@ To calculate the results of the entire sample of 5M events, the same code from w
 
 
 ### Formulas
-Notation: $k = 1, \dots, N$ is the sub-sample index ($N = 10$), $n_k$ is the number of bacteria of a given ID in sub-sample $k$, and $E_k$ is the number of valid events in sub-sample $k$ (events with 0 bacteria are excluded).
+Average number per event in one sub-sample ($n$ = bacteria counted, $E$ = valid events):
 
-**Mean per event in one sub-sample**
+$$x = \frac{n}{E}$$
 
-$$x_k = \frac{n_k}{E_k}$$
+Standard deviation of the 10 sub-samples:
 
-**Mean per event (final value, average over the sub-samples)**
+$$\sigma = \sqrt{\frac{\sum (x_i - \bar{x})^2}{N-1}}, \qquad N = 10$$
 
-$$\bar{x} = \frac{1}{N} \sum_{k=1}^{N} x_k$$
+Asymmetry (positive means more WT, negative means more mutant, 0 means equal):
 
-**Statistical uncertainty (spread of the sub-sample results)**
+$$A = \frac{N_{WT} - N_{mut}}{N_{WT} + N_{mut}}$$
 
-$$\sigma = \sqrt{\frac{1}{N-1} \sum_{k=1}^{N} \left(x_k - \bar{x}\right)^2}$$
+Significance (how many standard deviations the asymmetry is away from 0):
 
-**Uncertainty on the mean**
+$$z = \frac{A}{\sigma_A}$$
 
-$$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{N}}$$
-
-**Total count (all sets)**
-
-$$n_{\text{total}} = \sum_{k=1}^{N} n_k$$
-
-**Difference between WT and mutant**
-
-$$\Delta = \bar{x}_{\text{WT}} - \bar{x}_{\text{mutant}}$$
-
-**Asymmetry**
-
-$$|z| \geq 3 \;\Rightarrow\; \text{asymmetry}$$
+I call it an asymmetry if $|z| \geq 3$.
 
 
 
