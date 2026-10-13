@@ -207,7 +207,10 @@ with $\Delta P_b$ the bin width and $E_k = 500{,}000$ events per sub-sample.
 In every asymmetry plot: green points = mean asymmetry of the 10 sub-samples in each bin, vertical bar = statistical uncertainty, horizontal bar = bin width, pink band = overall asymmetry of the pair (all momenta) ± its uncertainty, red dashed line = no asymmetry, grey area = open last bin.
 
 #### *E. coli* (211 / -211)
+<img width="625" height="362" alt="Screenshot 2026-10-13 at 20 16 42" src="https://github.com/user-attachments/assets/875b9d75-1a6f-423c-8229-cbdaaec069bd" />
 
+<img width="628" height="392" alt="Screenshot 2026-10-13 at 20 16 55" src="https://github.com/user-attachments/assets/fa7ee533-e43d-4d47-8cd5-afe2947cf1fd" />
+<img width="631" height="429" alt="Screenshot 2026-10-13 at 20 17 34" src="https://github.com/user-attachments/assets/a002716b-a1b1-4dec-ad78-c20ac018cd21" />
 
 
 The asymmetry **grows with momentum**: it is compatible with zero below $P \approx 1$, around 0.001 at intermediate momenta and reaches ≈ 0.006 above $P = 32$, with small error bars. The overall value $\bar{A} = 0.0008$ is therefore an average over a momentum-dependent effect. (Error bars in this plot are the SEM.)
@@ -229,7 +232,10 @@ Below $P \approx 12$ all bins are compatible with zero. There is a hint of an in
 Every bin lies clearly above zero and inside or close to the overall band (0.0100 ± 0.0010). The asymmetry is roughly **constant** at low momentum (≈ 0.008) with a mild rise above $P \approx 8$ (≈ 0.012–0.015), so the WT excess is present at all momenta.
 
 #### *Streptococcus pneumoniae* (3122 / -3122)
-<img src="plots/asymmetry-3122.png" width="700">
+<img width="637" height="408" alt="Screenshot 2026-10-13 at 20 17 51" src="https://github.com/user-attachments/assets/7f300d94-a22e-4565-a6a1-c22821de85d5" />
+
+<img width="624" height="430" alt="Screenshot 2026-10-13 at 20 18 12" src="https://github.com/user-attachments/assets/668ecb94-d4ec-4954-9bb3-3e07e500b127" />
+
 
 All bins are positive. A straight-line fit gives a slope of $(5.1 \pm 1.6)\times10^{-4}$ per $10^{-20}$ kg m/s (3.2σ), so the asymmetry **increases with momentum**, from ≈ 0.006 at low $P$ to ≈ 0.013 above $P = 8$.
 
