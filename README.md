@@ -130,11 +130,13 @@ $$z = \frac{A}{\sigma_A}$$
 *Feedback:* "Why do you propagate the uncertainties on your z-score as if the two measurements are fully uncorrelated?"
 
 My first formula:
+
 $$z = \frac{\bar{x}_{WT} - \bar{x}_{mut}}{\sqrt{\sigma_{WT}^2 + \sigma_{mut}^2}}$$
 
 The problem with this formula is that it calculates the uncertainty for WT and mutants separately before combining them. So, the formula above treats them as independent events. However, because they are already counted in the same events, their numbers are connected. So the WT and mutant numbers increase and decrease together.
 
 New formula:
+
 $$\sigma_{\Delta}^2 = \sigma_{WT}^2 + \sigma_{mut}^2 - 2\,\text{cov}(WT, mut)$$
 
 **What I changed:** First, I calculate the difference and the asymmetry inside each sub-sample, and then I take the standard deviation of those 10 values. 
