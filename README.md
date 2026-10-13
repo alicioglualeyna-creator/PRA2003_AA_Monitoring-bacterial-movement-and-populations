@@ -55,8 +55,7 @@ This code will read one file with 500K events and will select the bacterial stra
 * To run the code, the user should have the file downloaded in the same folder as the script.
 
 **Data Handling**
-* Events with 0 particles (e.g. "19 0") are the failed experiments and are not counted as events.
-    * They will not be counted towards the total average.
+* Events with 0 particles (e.g. "19 0") are the failed experiments and are not counted as events. They will therefore not be counted towards the total average.
 
 ## Week 4: Data Analysis
 The main results come from the analysis of the entire sample of 5M events. 
@@ -92,13 +91,13 @@ Significance:
 $$z = \frac{A}{\sigma_A}$$
 
 Asymmetry criterion: 
-$|z| \geq 3$ = asymmetry
-$|z| < 3$ = no asymmetry
+$|z| \geq 3$ = asymmetry, $|z| < 3$ = no asymmetry
 
 
 ### Results
 
 **Table 1: Average count per event for each strain**
+
 
 | ID    | Strain                                        | Mean per event | Stat. uncertainty | Uncertainty on mean (std / √N) | Total count (all sets) | N sub-samples |
 |-------|-----------------------------------------------|----------------|-------------------|--------------------------------|------------------------|---------------|
@@ -116,6 +115,7 @@ $|z| < 3$ = no asymmetry
 | -3334 | *Salmonella* mutant                           | 0.00115        | 5.18E-05          | 1.64E-05                       | 5,318                  | 10            |
 
 **Table 2 (old version, before feedback): Asymmetry between WT and mutant strains**
+
 
 | ID pair       | Pair                                                  | Difference (WT − mutant) | z-score (uncorrelated) | Asymmetry (abs(z) ≥ 3) |
 |---------------|-------------------------------------------------------|--------------------------|------------------------|------------------------|
@@ -198,24 +198,29 @@ Key:
 
 
 #### *E. coli* (211 / -211)
+
 <img width="625" height="362" alt="Screenshot 2026-10-13 at 20 16 42" src="https://github.com/user-attachments/assets/875b9d75-1a6f-423c-8229-cbdaaec069bd" />
 
 <img width="628" height="392" alt="Screenshot 2026-10-13 at 20 16 55" src="https://github.com/user-attachments/assets/fa7ee533-e43d-4d47-8cd5-afe2947cf1fd" />
 
 * Very close to 0 at the lowest momenta, then it slowly increases, up to about 0.006 above P = 32
-* Error bars are small because *E. coli* is one of the most common strains
+* The reason why the error bars are smaller than the rest of the strains is because *E. coli* is one of the most common strains
+
 
 
 #### *Bacillus subtilis* (321 / -321)
+
 <img width="508" height="323" alt="Screenshot 2026-10-13 at 18 48 22" src="https://github.com/user-attachments/assets/d21f1852-2730-40fa-bfe3-3e59e2ba151f" />
 
 <img width="505" height="330" alt="Screenshot 2026-10-13 at 18 48 42" src="https://github.com/user-attachments/assets/5ee2a66a-77b4-47f4-8554-47f800e2fea8" />
 
 * Close to 0 for most momenta
-* There is a small rise at high momentum, but it isn't above 3σ, so I don't count it as an asymmetry
+* There is a small rise at high momentum, but it isn't above 3σ = no asymmetry
+
 
 
 #### *Pseudomonas aeruginosa* (2212 / -2212)
+
 <img width="658" height="404" alt="Screenshot 2026-10-13 at 18 52 49" src="https://github.com/user-attachments/assets/fe884201-8ecb-4717-9484-8ab275eeee25" />
 
 <img width="699" height="430" alt="Screenshot 2026-10-13 at 19 00 34" src="https://github.com/user-attachments/assets/c1651e6e-8bc9-4c4b-8542-a20f573c7c52" />
@@ -229,7 +234,9 @@ Key:
 * The gray area represents the overflow bin (P>16)
 
 
+
 #### *Streptococcus pneumoniae* (3122 / -3122)
+
 <img width="637" height="408" alt="Screenshot 2026-10-13 at 20 17 51" src="https://github.com/user-attachments/assets/7f300d94-a22e-4565-a6a1-c22821de85d5" />
 
 <img width="624" height="430" alt="Screenshot 2026-10-13 at 20 18 12" src="https://github.com/user-attachments/assets/668ecb94-d4ec-4954-9bb3-3e07e500b127" />
@@ -238,7 +245,9 @@ Key:
 * A straight-line fit gives a positive slope of (5.1 ± 1.6) × 10⁻⁴ (3.2σ), so the asymmetry gets bigger with momentum
   
 
+
 #### *Mycobacterium tuberculosis* (3312 / -3312)
+
 <img width="650" height="407" alt="Screenshot 2026-10-13 at 19 00 56" src="https://github.com/user-attachments/assets/bcc35324-7aa5-4bea-aebb-88b5b9375782" />
 
 <img width="637" height="400" alt="Screenshot 2026-10-13 at 19 01 23" src="https://github.com/user-attachments/assets/17f8cd2d-cd11-4e87-a266-1c05158ad690" />
@@ -248,25 +257,24 @@ Key:
 * The WT and mutants overlap due to insignificant differences
 * 30 times fewer bacteria than 2212
 * Overall: 0.0056 ± 0.0062 (pink band)
-* All bins are compatible with zero and with each other
-     * 10 out of the 11 bins are above zero
+* Out of the 11 bins, 10 are above zero
 * Error bars (≈ ±0.015–0.025) are large because this strain is rare
-     * Error bars are about 5 times bigger than for *P. aeruginosa*, because there are about 30 times fewer bacteria, so I can't claim an asymmetry
-* No momentum dependence observed
-* The pink band overlaps with the red line, meaning that it is not asymmetric 
+     * Error bars are about 5 times bigger than for *P. aeruginosa*, because there are about 30 times fewer bacteria = no asymmetry
+* The pink band overlaps with the red line = no asymmetry  
+
 
 
 #### *Salmonella enterica* (3334 / -3334)
+
 <img width="638" height="402" alt="Screenshot 2026-10-13 at 19 02 06" src="https://github.com/user-attachments/assets/c76c89a8-2c70-4a07-a88f-d31246afa983" />
 
 <img width="628" height="382" alt="Screenshot 2026-10-13 at 19 02 24" src="https://github.com/user-attachments/assets/39a88487-f218-4c9c-a427-ed0ce571a0e9" />
 
-* The points jump around 0 with large error bars (there are only ~1,000 bacteria per file)
+* The points are scattered around 0 with large error bars 
 * No asymmetry and no momentum trend
 
 
 ### Limitations
-* For *M. tuberculosis* and *Salmonella* the data cannot exclude an asymmetry of the same size as in the other strains because they few bacteria to measure it.
 * Varied bin lengths because bins have different statistical weights
 * Set 10 complications because its a smaller set and can be removed for future research
 * It is also important to consider that some values from the earlier deliverables were rounded before being reused 
