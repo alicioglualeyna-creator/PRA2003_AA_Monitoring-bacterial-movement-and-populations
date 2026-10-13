@@ -142,6 +142,19 @@ $$\sigma_{\Delta}^2 = \sigma_{WT}^2 + \sigma_{mut}^2 - 2\,\text{cov}(WT, mut)$$
 **What I changed:** First, I calculate the difference and the asymmetry inside each sub-sample, and then I take the standard deviation of those 10 values. 
 
 
+**Table 3 (corrected version): Mean asymmetry, statistical uncertainty and significance**
+
+| Pair | Difference (WT − mutant) | Mean asymmetry A | Significance (z) | Asymmetry (abs(z) ≥ 3) |
+|------|--------------------------|------------------|------------------|------------------------|
+| *E. coli* | 0.0323 ± 0.0045 | 0.0008 ± 0.0001 | 7.2σ | **yes** |
+| *B. subtilis* | 0.0057 ± 0.0033 | 0.0011 ± 0.0007 | 1.7σ | no |
+| *P. aeruginosa* | 0.0239 ± 0.0024 | 0.0100 ± 0.0010 | 10σ | **yes** |
+| *S. pneumoniae* | 0.0049 ± 0.0006 | 0.0089 ± 0.0011 | 8.5σ | **yes** |
+| *M. tuberculosis* | 0.0004 ± 0.0005 | 0.0056 ± 0.0062 | 0.9σ | no |
+| *Salmonella* | 0.00004 ± 0.00007 | 0.015 ± 0.029 | 0.5σ | no |
+
+
+
 ### Running the final code (deliverable weeks 5 and 6)
 **Requirements**
 * All 10 sub-samples should be in the same folder as the scripts
@@ -173,7 +186,7 @@ $$P = \sqrt{p_x^2 + p_y^2 + p_z^2} \qquad \text{(unit: } 10^{-20}\text{ kg m/s)}
 
 
 ### Plots
-Key for every asymmetry plot: 
+Key: 
 * Green points = mean asymmetry of the 10 sub-samples in momentum bin
 * Vertical bar = statistical uncertainty (std)
 * Horizontal bar = bin width (narrow or wide)
