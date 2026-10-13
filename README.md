@@ -210,8 +210,6 @@ In every asymmetry plot: green points = mean asymmetry of the 10 sub-samples in 
 <img width="625" height="362" alt="Screenshot 2026-10-13 at 20 16 42" src="https://github.com/user-attachments/assets/875b9d75-1a6f-423c-8229-cbdaaec069bd" />
 
 <img width="628" height="392" alt="Screenshot 2026-10-13 at 20 16 55" src="https://github.com/user-attachments/assets/fa7ee533-e43d-4d47-8cd5-afe2947cf1fd" />
-<img width="631" height="429" alt="Screenshot 2026-10-13 at 20 17 34" src="https://github.com/user-attachments/assets/a002716b-a1b1-4dec-ad78-c20ac018cd21" />
-
 
 The asymmetry **grows with momentum**: it is compatible with zero below $P \approx 1$, around 0.001 at intermediate momenta and reaches ≈ 0.006 above $P = 32$, with small error bars. The overall value $\bar{A} = 0.0008$ is therefore an average over a momentum-dependent effect. (Error bars in this plot are the SEM.)
 
