@@ -138,6 +138,17 @@ $$|z| \geq 3 \;\Rightarrow\; \text{asymmetry}$$
 
 
 
+## Week 6:
+
+<img width="884" height="588" alt="Screenshot 2026-10-13 at 17 05 13" src="https://github.com/user-attachments/assets/ae4d2c67-1029-45ed-80c9-6ed0be67bb05" />
+
+<img width="885" height="620" alt="Screenshot 2026-10-13 at 17 05 56" src="https://github.com/user-attachments/assets/b04602b4-20ad-443b-9500-f0e5ea4b5842" />
+
+<img width="1030" height="628" alt="Screenshot 2026-10-13 at 17 03 05" src="https://github.com/user-attachments/assets/9f874e20-ad68-4818-9223-cb7e838fa55c" />
+
+<img width="1090" height="675" alt="Screenshot 2026-10-13 at 17 02 53" src="https://github.com/user-attachments/assets/6c621708-a865-401d-b1bb-6ec1bce1b520" />
+
+
 
 
 
