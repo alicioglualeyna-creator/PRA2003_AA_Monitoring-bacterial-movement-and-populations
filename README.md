@@ -92,7 +92,6 @@ Significance (how many standard deviations the asymmetry is away from 0):
 
 $$z = \frac{A}{\sigma_A}$$
 
-I call it an asymmetry if $|z| \geq 3$.
 
 
 
@@ -157,7 +156,7 @@ $$\sigma_{\Delta}^2 = \sigma_{WT}^2 + \sigma_{mut}^2 - 2\,\text{cov}(WT, mut)$$
 
 $$P = \sqrt{p_x^2 + p_y^2 + p_z^2} \qquad \text{(unit: } 10^{-20}\text{ kg m/s)}$$
 
-**Step 2 – bins.** I split the momentum into ranges (bins). Where there are lots of bacteria (low momentum) the bins are narrow, and where there are few (high momentum) they are wider, so every bin has enough bacteria. The first bin starts at 0 so nobody is left out, and everything above the last edge goes into one extra bin (the grey area in the plots). I used the same bins for all 10 sub-samples.
+**Step 2 – bins.** I split the momentum into ranges (bins). The narrow bins mean that there are lots of bacteria (low momentum), and where there are few bacteria (high momentum) they are wider. The same bins were used for all 10 sub-samples.
 
 | Pair | Bin edges |
 |------|-----------|
@@ -168,48 +167,42 @@ $$P = \sqrt{p_x^2 + p_y^2 + p_z^2} \qquad \text{(unit: } 10^{-20}\text{ kg m/s)}
 
 **Step 3 – per bin.** In every bin of every sub-sample I count WT and mutants and calculate $A$. Then I average over the 10 sub-samples, and the standard deviation is the error bar.
 
-**How to read the plots:**
-* green dot = average asymmetry in that momentum bin
-* vertical bar = uncertainty (std), horizontal bar = width of the bin
-* pink band = overall asymmetry of the pair (all momenta together)
-* red dashed line = no asymmetry (equal WT and mutant)
-* grey area = the extra bin with all the highest momenta
-
-  
-| Pair | Bins edges |
-|------|-----------|
-| 211 / -211   | 0, 0.25, 0.5, 0.75, 1, 1.5, 2, 3, 4, 6, 8, 12, 16, 24, 32 |
-| 321 / -321   | 0, 0.5, 1, 1.5, 2, 2.5, 3, 4, 6, 8, 12, 16, 24, 40 |
-| 2212 / -2212 | 0, 1, 1.5, 2, 2.5, 3, 4, 6, 8, 12, 16 |
-| 3122 / -3122 | 0, 1, 1.5, 2, 2.5, 3, 4, 6, 8, 12, 16 |
-| 3312 / -3312 | 0, 1, 1.5, 2, 2.5, 3, 4, 6, 8, 12, 16 |
-| 3334 / -3334 | 0, 1, 2, 3, 4.5, 7, 10, 15, 21 |
-
 
 ### Plots
+Key for every asymmetry plot: 
+* Green points = mean asymmetry of the 10 sub-samples in momentum bin
+* Vertical bar = statistical uncertainty (std)
+* Horizontal bar = bin width (narrow or wide)
+* Pink band = overall asymmetry of the pair (all momenta) ± its uncertainty
+* Red dashed line = no asymmetry (equal WT and mutant)
+* Grey area = open last bin
 
-In every asymmetry plot: green points = mean asymmetry of the 10 sub-samples in each bin, vertical bar = statistical uncertainty, horizontal bar = bin width, pink band = overall asymmetry of the pair (all momenta) ± its uncertainty, red dashed line = no asymmetry, grey area = open last bin.
 
 #### *E. coli* (211 / -211)
 <img width="625" height="362" alt="Screenshot 2026-10-13 at 20 16 42" src="https://github.com/user-attachments/assets/875b9d75-1a6f-423c-8229-cbdaaec069bd" />
 
 <img width="628" height="392" alt="Screenshot 2026-10-13 at 20 16 55" src="https://github.com/user-attachments/assets/fa7ee533-e43d-4d47-8cd5-afe2947cf1fd" />
 
-Almost 0 at the lowest momenta, then it slowly increases, up to about 0.006 above P = 32. The error bars are tiny because *E. coli* is by far the most common strain. *(Note: this plot shows the SEM instead of the std.)*
+* Very close to 0 at the lowest momenta, then it slowly increases, up to about 0.006 above P = 32
+* Error bars are small because *E. coli* is one of the most common strains
+
 
 #### *Bacillus subtilis* (321 / -321)
 <img width="508" height="323" alt="Screenshot 2026-10-13 at 18 48 22" src="https://github.com/user-attachments/assets/d21f1852-2730-40fa-bfe3-3e59e2ba151f" />
 
 <img width="505" height="330" alt="Screenshot 2026-10-13 at 18 48 42" src="https://github.com/user-attachments/assets/5ee2a66a-77b4-47f4-8554-47f800e2fea8" />
 
-Close to 0 for most momenta. There is a small rise at high momentum, but it isn't above 3σ, so I don't count it as an asymmetry.
+* Close to 0 for most momenta
+* There is a small rise at high momentum, but it isn't above 3σ, so I don't count it as an asymmetry
+
 
 #### *Pseudomonas aeruginosa* (2212 / -2212)
 <img width="658" height="404" alt="Screenshot 2026-10-13 at 18 52 49" src="https://github.com/user-attachments/assets/fe884201-8ecb-4717-9484-8ab275eeee25" />
 
 <img width="699" height="430" alt="Screenshot 2026-10-13 at 19 00 34" src="https://github.com/user-attachments/assets/c1651e6e-8bc9-4c4b-8542-a20f573c7c52" />
 
-Every point is above 0, so there are more WT than antibiotic-resistant bacteria **at every momentum**. The asymmetry also goes up with momentum: about 0.008 below P = 3 and about 0.015 above P = 16. So the difference is biggest for the fastest-moving bacteria.
+* Every point is above 0, so there are more WT than antibiotic-resistant bacteria **at every momentum**.
+* The asymmetry goes up with momentum: about 0.008 below P = 3 and about 0.015 above P = 16. So the difference is biggest for the fastest-moving bacteria.
 
 
 #### *Streptococcus pneumoniae* (3122 / -3122)
@@ -217,24 +210,29 @@ Every point is above 0, so there are more WT than antibiotic-resistant bacteria 
 
 <img width="624" height="430" alt="Screenshot 2026-10-13 at 20 18 12" src="https://github.com/user-attachments/assets/668ecb94-d4ec-4954-9bb3-3e07e500b127" />
 
-
-All points are above 0. A straight-line fit gives a positive slope of (5.1 ± 1.6) × 10⁻⁴ (3.2σ), so the asymmetry gets bigger with momentum.
+* All points above 0
+* A straight-line fit gives a positive slope of (5.1 ± 1.6) × 10⁻⁴ (3.2σ), so the asymmetry gets bigger with momentum
+  
 
 #### *Mycobacterium tuberculosis* (3312 / -3312)
 <img width="650" height="407" alt="Screenshot 2026-10-13 at 19 00 56" src="https://github.com/user-attachments/assets/bcc35324-7aa5-4bea-aebb-88b5b9375782" />
 
 <img width="637" height="400" alt="Screenshot 2026-10-13 at 19 01 23" src="https://github.com/user-attachments/assets/17f8cd2d-cd11-4e87-a266-1c05158ad690" />
 
+* All bins are compatible with zero and with each other
+* Error bars (≈ ±0.015–0.025) are large because this strain is rare
+     * Error bars are about 5 times bigger than for *P. aeruginosa*, because there are about 30 times fewer bacteria, so I can't claim an asymmetry
+* No momentum dependence observed
+* Most points are slightly above 0, but every error bar crosses the red line and the pink band touches 0 as well
 
-All bins are compatible with zero and with each other; the error bars (≈ ±0.015–0.025) are large because this strain is rare. No momentum dependence can be seen. Most points are a bit above 0, but every error bar crosses the red line and the pink band touches 0 as well. The error bars are about 5 times bigger than for *P. aeruginosa*, because there are about 30 times fewer bacteria. So I can't claim an asymmetry, and I don't see it change with momentum.
 
 #### *Salmonella enterica* (3334 / -3334)
 <img width="638" height="402" alt="Screenshot 2026-10-13 at 19 02 06" src="https://github.com/user-attachments/assets/c76c89a8-2c70-4a07-a88f-d31246afa983" />
 
 <img width="628" height="382" alt="Screenshot 2026-10-13 at 19 02 24" src="https://github.com/user-attachments/assets/39a88487-f218-4c9c-a427-ed0ce571a0e9" />
 
-The points jump around 0 with huge error bars (there are only ~1,000 bacteria per file). No asymmetry and no momentum trend.
-
+* The points jump around 0 with large error bars (there are only ~1,000 bacteria per file)
+* No asymmetry and no momentum trend
 
 
 ### Limitations
@@ -245,7 +243,7 @@ The points jump around 0 with huge error bars (there are only ~1,000 bacteria pe
   
 ## Conclusion
 
-** Do we see any bacteria asymmetry?: Yes, for three of the six pairs.**
+**Do we see any bacteria asymmetry?: Yes, for three of the six pairs.**
 
 | Pair | Overall asymmetry | Momentum dependence | Verdict |
 |------|-------------------|---------------------|---------|
