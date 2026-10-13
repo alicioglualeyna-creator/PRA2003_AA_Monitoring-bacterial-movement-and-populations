@@ -96,10 +96,6 @@ $$n_{\text{total}} = \sum_{k=1}^{N} n_k$$
 
 $$\Delta = \bar{x}_{\text{WT}} - \bar{x}_{\text{mutant}}$$
 
-**z-score (std-based, conservative)**
-
-$$z = \frac{\Delta}{\sqrt{\sigma_{\text{WT}}^2 + \sigma_{\text{mutant}}^2}}$$
-
 **Asymmetry criterion**
 
 $$|z| \geq 3 \;\Rightarrow\; \text{asymmetry}$$
@@ -127,29 +123,54 @@ $$|z| \geq 3 \;\Rightarrow\; \text{asymmetry}$$
 
 **Table 2: Asymmetry between WT and mutant strains**
 
-| ID pair       | Pair                                                  | Difference (WT − mutant) | z-score (std-based, conservative) | Asymmetry (abs(z) ≥ 3) |
-|---------------|-------------------------------------------------------|--------------------------|-----------------------------------|------------------------|
-| 211 vs -211   | *E. coli* (WT vs mutant)                              | 0.0323                   | 7.10E-01                          | no                     |
-| 321 vs -321   | *Bacillus subtilis* (WT vs mutant)                    | 0.00569                  | 7.80E-01                          | no                     |
-| 2212 vs -2212 | *Pseudomonas aeruginosa* (WT vs antibiotic-resistant) | 0.02387                  | 7.78E+00                          | yes                    |
-| 3122 vs -3122 | *S. pneumoniae* (WT vs capsule-deficient)             | 0.0049                   | 3.37E+00                          | yes                    |
-| 3312 vs -3312 | *M. tuberculosis* (WT vs drug-resistant)              | 0.00044                  | 9.00E-01                          | no                     |
-| 3334 vs -3334 | *Salmonella enterica* (WT vs mutant)                  | 0.00004                  | 5.40E-01                          | no                     |
+| ID pair       | Pair                                                  | Difference (WT − mutant) | z-score (uncorrelated) | Asymmetry (abs(z) ≥ 3) |
+|---------------|-------------------------------------------------------|--------------------------|------------------------|------------------------|
+| 211 vs -211   | *E. coli* (WT vs mutant)                              | 0.0323                   | 0.71                   | no                     |
+| 321 vs -321   | *Bacillus subtilis* (WT vs mutant)                    | 0.00569                  | 0.78                   | no                     |
+| 2212 vs -2212 | *Pseudomonas aeruginosa* (WT vs antibiotic-resistant) | 0.02387                  | 7.78                   | yes                    |
+| 3122 vs -3122 | *S. pneumoniae* (WT vs capsule-deficient)             | 0.0049                   | 3.37                   | yes                    |
+| 3312 vs -3312 | *M. tuberculosis* (WT vs drug-resistant)              | 0.00044                  | 0.90                   | no                     |
+| 3334 vs -3334 | *Salmonella enterica* (WT vs mutant)                  | 0.00004                  | 0.54                   | no                     |
 
 
+### Correction of the z-score (feedback: correlated measurements)
 
-## Week 6:
+> *Feedback:* "Why do you propagate the uncertainties on your z-score as if the two measurements are fully uncorrelated?"
 
-<img width="884" height="588" alt="Screenshot 2026-10-13 at 17 05 13" src="https://github.com/user-attachments/assets/ae4d2c67-1029-45ed-80c9-6ed0be67bb05" />
+The WT and mutant counts are **not independent**: in every sub-sample they are counted in the *same* events. When a sub-sample happens to contain more bacteria overall, both the WT and the mutant counts go up together. The two measurements are therefore positively correlated, and the correct propagation of the uncertainty on the difference is
 
-<img width="885" height="620" alt="Screenshot 2026-10-13 at 17 05 56" src="https://github.com/user-attachments/assets/b04602b4-20ad-443b-9500-f0e5ea4b5842" />
+$$\sigma_{\Delta}^2 = \sigma_{\text{WT}}^2 + \sigma_{\text{mutant}}^2 - 2\,\text{cov}(x_{\text{WT}}, x_{\text{mutant}})$$
 
-<img width="1030" height="628" alt="Screenshot 2026-10-13 at 17 03 05" src="https://github.com/user-attachments/assets/9f874e20-ad68-4818-9223-cb7e838fa55c" />
+Leaving out the covariance term (as in Table 2) **overestimates** the uncertainty and makes the z-score too small.
 
-<img width="1090" height="675" alt="Screenshot 2026-10-13 at 17 02 53" src="https://github.com/user-attachments/assets/6c621708-a865-401d-b1bb-6ec1bce1b520" />
+Instead of estimating the covariance separately, the correlation is taken into account automatically by computing the comparison **inside each sub-sample first** and only then looking at the spread. For this the asymmetry is used:
+
+**Asymmetry in one sub-sample**
+
+$$A_k = \frac{n_{\text{WT},k} - n_{\text{mut},k}}{n_{\text{WT},k} + n_{\text{mut},k}}$$
+
+**Mean asymmetry** (weighted by the number of bacteria $w_k = n_{\text{WT},k} + n_{\text{mut},k}$ in each sub-sample)
+
+$$\bar{A} = \frac{\sum_k w_k A_k}{\sum_k w_k}$$
+
+**Statistical uncertainty** (weighted spread of the 10 $A_k$ values)
+
+$$\sigma_A = \sqrt{\frac{N}{N-1}\,\frac{\sum_k w_k (A_k - \bar{A})^2}{\sum_k w_k}}$$
+
+**Corrected z-score**
+
+$$z = \frac{\bar{A}}{\sigma_A}$$
+
+Because $A_k$ is built from WT and mutant counts of the *same* sub-sample, any fluctuation that both share cancels in $A_k$, so $\sigma_A$ contains the covariance term. As in Week 4, the std (not the SEM) is used, which is the conservative choice.
 
 
+## Week 6: Asymmetry as a Function of Momentum
 
+### Code
+| Step | File | Language | What it does |
+|------|------|----------|--------------|
+| 1 | `1_Deliverable6momentum.r` | R | Reads all 10 `output-Set#.txt` files in chunks of 2 million lines, keeps the bacteria with the IDs of interest, calculates $P = \sqrt{p_x^2 + p_y^2 + p_z^2}$ and writes one `momenta-Set#.csv` per sub-sample (columns `ID`, `p`). |
+| 2 | `2_Deliverable6finalmomentum.py` | Python | For one WT/mutant pair (`pid1` at the top of the file): bins the momenta, computes the asymmetry and $dN/dP$ per bin per sub-sample, averages over the 10 sub-samples, saves `asymmetry-<ID>.csv`, `asymmetry-<ID>.png` and `spectrum-<ID>.png`. |
 
 
 
