@@ -4,8 +4,12 @@
 
 **Course**: Programming (PRA2003)
 
+**Presentation Group**: R1
+
 **University**: Maastricht University 
 
+## Project Background:
+The 10 data files are from a bacterial tracking experiment. For every bacterial strain there is a wild type (WT, positive ID) and a mutant (negative ID).
 
 ## Biology Themed Research Questions:
 Answer the following questions with the given dataset:
@@ -22,7 +26,8 @@ Answer the following questions with the given dataset:
 * Each event starts with a header line
     * First value represents the experiment number
     * Second value is the number of bacteria in that experiment
-    * px, py, pz, ID
+    * px, py, pz, ID 
+* Some events consisted of 0 bacteria and where excluded from the calculations
 
 
 
@@ -58,7 +63,6 @@ This code will read one file with 500K events and will select the bacterial stra
 The main results come from the analysis of the entire sample of 5M events. 
 
 **Description**
-
 To calculate the results of the entire sample of 5M events, the same code from week 3 was reused. Each dataset was analysed separately as an individual sub-sample, meaning that there would be 10 sub-samples in total.
 
 ### Method
@@ -98,7 +102,7 @@ $$n_{\text{total}} = \sum_{k=1}^{N} n_k$$
 
 $$\Delta = \bar{x}_{\text{WT}} - \bar{x}_{\text{mutant}}$$
 
-**Asymmetry criterion**
+**Asymmetry**
 
 $$|z| \geq 3 \;\Rightarrow\; \text{asymmetry}$$
 
