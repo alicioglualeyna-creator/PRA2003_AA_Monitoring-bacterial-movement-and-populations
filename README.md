@@ -207,9 +207,7 @@ with $\Delta P_b$ the bin width and $E_k = 500{,}000$ events per sub-sample.
 In every asymmetry plot: green points = mean asymmetry of the 10 sub-samples in each bin, vertical bar = statistical uncertainty, horizontal bar = bin width, pink band = overall asymmetry of the pair (all momenta) ± its uncertainty, red dashed line = no asymmetry, grey area = open last bin.
 
 #### *E. coli* (211 / -211)
-<img width="481" height="316" alt="Screenshot 2026-10-13 at 18 46 17" src="https://github.com/user-attachments/assets/6764ea44-870d-490e-a275-e8a6bbbaeb7e" />
 
-<img width="490" height="326" alt="Screenshot 2026-10-13 at 18 47 34" src="https://github.com/user-attachments/assets/786fa43e-261e-42e6-ae6f-894be8637435" />
 
 
 The asymmetry **grows with momentum**: it is compatible with zero below $P \approx 1$, around 0.001 at intermediate momenta and reaches ≈ 0.006 above $P = 32$, with small error bars. The overall value $\bar{A} = 0.0008$ is therefore an average over a momentum-dependent effect. (Error bars in this plot are the SEM.)
@@ -223,7 +221,10 @@ The asymmetry **grows with momentum**: it is compatible with zero below $P \appr
 Below $P \approx 12$ all bins are compatible with zero. There is a hint of an increase at high momentum (last bin ≈ 0.019 ± 0.008, ≈ 2.4σ), but no single bin reaches 3σ and the overall asymmetry (0.0011 ± 0.0007) is not significant.
 
 #### *Pseudomonas aeruginosa* (2212 / -2212)
-<img src="plots/asymmetry-2212.png" width="700">
+<img width="658" height="404" alt="Screenshot 2026-10-13 at 18 52 49" src="https://github.com/user-attachments/assets/fe884201-8ecb-4717-9484-8ab275eeee25" />
+
+<img width="699" height="430" alt="Screenshot 2026-10-13 at 19 00 34" src="https://github.com/user-attachments/assets/c1651e6e-8bc9-4c4b-8542-a20f573c7c52" />
+
 
 Every bin lies clearly above zero and inside or close to the overall band (0.0100 ± 0.0010). The asymmetry is roughly **constant** at low momentum (≈ 0.008) with a mild rise above $P \approx 8$ (≈ 0.012–0.015), so the WT excess is present at all momenta.
 
@@ -233,12 +234,18 @@ Every bin lies clearly above zero and inside or close to the overall band (0.010
 All bins are positive. A straight-line fit gives a slope of $(5.1 \pm 1.6)\times10^{-4}$ per $10^{-20}$ kg m/s (3.2σ), so the asymmetry **increases with momentum**, from ≈ 0.006 at low $P$ to ≈ 0.013 above $P = 8$.
 
 #### *Mycobacterium tuberculosis* (3312 / -3312)
-<img src="plots/asymmetry-3312.png" width="700">
+<img width="650" height="407" alt="Screenshot 2026-10-13 at 19 00 56" src="https://github.com/user-attachments/assets/bcc35324-7aa5-4bea-aebb-88b5b9375782" />
+
+<img width="637" height="400" alt="Screenshot 2026-10-13 at 19 01 23" src="https://github.com/user-attachments/assets/17f8cd2d-cd11-4e87-a266-1c05158ad690" />
+
 
 All bins are compatible with zero and with each other; the error bars (≈ ±0.015–0.025) are large because this strain is rare. No momentum dependence can be seen.
 
 #### *Salmonella enterica* (3334 / -3334)
-<img src="plots/asymmetry-3334.png" width="700">
+<img width="638" height="402" alt="Screenshot 2026-10-13 at 19 02 06" src="https://github.com/user-attachments/assets/c76c89a8-2c70-4a07-a88f-d31246afa983" />
+
+<img width="628" height="382" alt="Screenshot 2026-10-13 at 19 02 24" src="https://github.com/user-attachments/assets/39a88487-f218-4c9c-a427-ed0ce571a0e9" />
+
 
 With only ≈ 1,000 bacteria per sub-sample the uncertainties are very large (≈ ±0.06–0.12 per bin). All bins scatter around zero, so there is no asymmetry and no momentum dependence.
 
