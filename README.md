@@ -1,6 +1,6 @@
 # PRA2003_Monitoring Bacterial Movement and Populations
 
-**Author**: Aleyna Alicioglu(i6381736)
+**Author**: Aleyna Alicioglu (i6381736)
 
 **Course**: Programming (PRA2003)
 
@@ -18,11 +18,10 @@ Answer the following questions with the given dataset:
 3. Is there any asymmetry as a function of their momentum?
 
 ## Dataset Description
-* There are 10 data files in total, each containing 500,000 events
+* There are 10 data files in total, each containing around 500K events
       * These 10 files were treated as subsamples
 * All of the files are named output-Set#.txt
 * Each file contains data on 12 bacterial strains, identified by a bacterial ID
-    * The mutant strain for each bacteria is labelled with a negative ID number
 * Each event starts with a header line
     * First value represents the experiment number
     * Second value is the number of bacteria in that experiment
@@ -50,7 +49,7 @@ Answer the following questions with the given dataset:
 ## Week 3: Code Installation
 This code will read one file with 500K events and will select the bacterial strains of interest based on its code and give the average bacteria per event together with its statistical uncertainty. 
 
-### Getting Started
+### Getting Started (deliverable week 3)
 **Dependences**
 * The file is very large, make sure that there is enough disk space available.
 * To run the code, the user should have the file downloaded in the same folder as the script.
@@ -128,21 +127,24 @@ $$z = \frac{A}{\sigma_A}$$
 
 ### Correction of the z-score (feedback)
 
-> *Feedback:* "Why do you propagate the uncertainties on your z-score as if the two measurements are fully uncorrelated?"
+*Feedback:* "Why do you propagate the uncertainties on your z-score as if the two measurements are fully uncorrelated?"
 
-In my first version I compared WT and mutant like this:
-
+My first formula:
 $$z = \frac{\bar{x}_{WT} - \bar{x}_{mut}}{\sqrt{\sigma_{WT}^2 + \sigma_{mut}^2}}$$
 
-This formula assumes WT and mutant are **independent**. They are not: they are counted in the **same events**. If one data file has more bacteria overall, it has more WT *and* more mutants. So the WT and mutant numbers go up and down together.
+The problem with this formula is that it calculates the uncertainty for WT and mutants separately before combining them. So, the formula above treats them as independent events. However, because they are already counted in the same events, their numbers are connected. So the WT and mutant numbers increase and decrease together.
 
-When you take the difference, that shared up-and-down cancels out, so the real uncertainty on the difference is **smaller** than my old formula said. The full formula has an extra covariance term:
-
+New formula:
 $$\sigma_{\Delta}^2 = \sigma_{WT}^2 + \sigma_{mut}^2 - 2\,\text{cov}(WT, mut)$$
 
-**What I changed:** instead of calculating the WT and mutant uncertainty separately and adding them, I now calculate the difference and the asymmetry **inside each sub-sample first**, and then take the standard deviation of those 10 values. That way the correlation is automatically included.
+**What I changed:** First, I calculate the difference and the asymmetry inside each sub-sample, and then I take the standard deviation of those 10 values. 
 
 
+### Running the final code (deliverable weeks 5 and 6)
+**Requirements**
+* All 10 sub-samples should be in the same folder as the scripts
+* VS code was used as the environment to conduct these statistical analyses 
+* Because the presentation group is called R1, the programming language R will be used to read the data files and calculate momentum. However, because Python is ideal for data visualization, it will be utilized to visualize asymmetry and momentum. The tools that were downloaded for this step are the following: `numpy`, `pandas` and `matplotlib`
 
 ## Week 6: Asymmetry as a Function of Momentum
 
