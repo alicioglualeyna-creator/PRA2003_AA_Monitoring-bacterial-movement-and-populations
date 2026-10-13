@@ -113,7 +113,7 @@ Asymmetry criterion: if $|z| \geq 3$ = asymmetry, if $|z| < 3$ = no asymmetry.
 | 3334  | *Salmonella enterica*                         | 0.00119        | 4.16E-05          | 1.31E-05                       | 5,482                  | 10            |
 | -3334 | *Salmonella* mutant                           | 0.00115        | 5.18E-05          | 1.64E-05                       | 5,318                  | 10            |
 
-**Table 2: Asymmetry between WT and mutant strains**
+**Table 2 (old version, before feedback): Asymmetry between WT and mutant strains**
 
 | ID pair       | Pair                                                  | Difference (WT − mutant) | z-score (uncorrelated) | Asymmetry (abs(z) ≥ 3) |
 |---------------|-------------------------------------------------------|--------------------------|------------------------|------------------------|
