@@ -15,12 +15,14 @@ Answer the following questions with the given dataset:
 
 ## Dataset Description
 * There are 10 data files in total, each containing 500,000 events
+      * These 10 files were treated as subsamples
 * All of the files are named output-Set#.txt
 * Each file contains data on 12 bacterial strains, identified by a bacterial ID
     * The mutant strain for each bacteria is labelled with a negative ID number
 * Each event starts with a header line
     * First value represents the experiment number
-    * Second value is the number of bacteria in that experiment 
+    * Second value is the number of bacteria in that experiment
+    * px, py, pz, ID
 
 
 
@@ -177,9 +179,10 @@ Because $A_k$ is built from WT and mutant counts of the *same* sub-sample, any f
 2. Set `idsOfInterest` in the R script to the pairs you want, run it: `Rscript 1_Deliverable6momentum.r`.
 3. Set `pid1` and `bins` (table below) in the Python script, run it: `python 2_Deliverable6finalmomentum.py`. Requires `numpy`, `pandas`, `matplotlib`.
 
-**Momentum bins** (unit: $10^{-20}$ kg m/s). Bins are narrower where there are many bacteria and wider in the tail, so every bin has enough statistics. The first bin starts at 0 so no bacteria are left out; an extra open bin collects everything above the last edge (grey area in the plots).
+**Momentum bins** (unit: $10^{-20}$ kg m/s) 
+The narrower bins have more bacteria, whereas the wider bins have fewer bacteria, for example, with the ID 3334/-3334. This ensures that every bin has enough statistics. It is also important to note that the first bins start with the value 0, so not bacteria are left out.
 
-| Pair | Bin edges |
+| Pair | Bins |
 |------|-----------|
 | 211 / -211   | 0, 0.25, 0.5, 0.75, 1, 1.5, 2, 3, 4, 6, 8, 12, 16, 24, 32 |
 | 321 / -321   | 0, 0.5, 1, 1.5, 2, 2.5, 3, 4, 6, 8, 12, 16, 24, 40 |
@@ -268,9 +271,9 @@ All spectra rise to a maximum at $P \approx 1$–2 and then fall steeply (log sc
 </details>
 
 
-## Conclusion: Do we see any bacteria asymmetry?
+## Conclusion
 
-**Yes, for three of the six pairs.**
+** Do we see any bacteria asymmetry?: Yes, for three of the six pairs.**
 
 | Pair | Overall asymmetry | Momentum dependence | Verdict |
 |------|-------------------|---------------------|---------|
