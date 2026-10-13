@@ -207,12 +207,18 @@ with $\Delta P_b$ the bin width and $E_k = 500{,}000$ events per sub-sample.
 In every asymmetry plot: green points = mean asymmetry of the 10 sub-samples in each bin, vertical bar = statistical uncertainty, horizontal bar = bin width, pink band = overall asymmetry of the pair (all momenta) ± its uncertainty, red dashed line = no asymmetry, grey area = open last bin.
 
 #### *E. coli* (211 / -211)
-<img src="plots/asymmetry-211.png" width="700">
+<img width="481" height="316" alt="Screenshot 2026-10-13 at 18 46 17" src="https://github.com/user-attachments/assets/6764ea44-870d-490e-a275-e8a6bbbaeb7e" />
+
+<img width="490" height="326" alt="Screenshot 2026-10-13 at 18 47 34" src="https://github.com/user-attachments/assets/786fa43e-261e-42e6-ae6f-894be8637435" />
+
 
 The asymmetry **grows with momentum**: it is compatible with zero below $P \approx 1$, around 0.001 at intermediate momenta and reaches ≈ 0.006 above $P = 32$, with small error bars. The overall value $\bar{A} = 0.0008$ is therefore an average over a momentum-dependent effect. (Error bars in this plot are the SEM.)
 
 #### *Bacillus subtilis* (321 / -321)
-<img src="plots/asymmetry-321.png" width="700">
+<img width="508" height="323" alt="Screenshot 2026-10-13 at 18 48 22" src="https://github.com/user-attachments/assets/d21f1852-2730-40fa-bfe3-3e59e2ba151f" />
+
+<img width="505" height="330" alt="Screenshot 2026-10-13 at 18 48 42" src="https://github.com/user-attachments/assets/5ee2a66a-77b4-47f4-8554-47f800e2fea8" />
+
 
 Below $P \approx 12$ all bins are compatible with zero. There is a hint of an increase at high momentum (last bin ≈ 0.019 ± 0.008, ≈ 2.4σ), but no single bin reaches 3σ and the overall asymmetry (0.0011 ± 0.0007) is not significant.
 
